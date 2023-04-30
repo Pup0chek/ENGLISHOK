@@ -1,0 +1,30 @@
+public partial class Form4 : Form
+    {
+        public string typee = "";
+        public Form4()
+        {
+            InitializeComponent();
+        }
+        public Form4(string type)
+        {
+            typee = type;
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cmd uu = new cmd();
+            uu.ccmmdd(typee);
+        }
+        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form6 ii = new Form6(typee);
+            ii.Show();
+        }
+        public Image PictureBox1
+        {
+            get => pictureBox1.Image;
+            set { pictureBox1.Image = value; }
+        }
