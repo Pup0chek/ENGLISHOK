@@ -1,0 +1,79 @@
+public partial class Form7 : Form
+    {
+        List<string> exers = new List<string> {"Привет мир","Я люблю спать", "Моя мечта- попасть на луну", "Чипсы-смысл жизни", "Мальчик из китая"};
+        List<string> ans = new List<string> { "" };
+        public string typeee = "";
+        public Form7(string type)
+        {
+            InitializeComponent();
+            typeee = type;
+            
+        }
+        private void Recognizer_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
+        {
+            textBox1.Text += "Не удалось распознать!" + Environment.NewLine;
+        }
+        private void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            textBox1.Text += e.Result.Text + Environment.NewLine ;
+        }
+        public Image PictureBox1
+        {
+            get => pictureBox1.Image;
+            set { pictureBox1.Image = value; }
+        }
+        private void Form7_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StartRecord()
+        {
+            var recognizer = new SpeechRecognitionEngine(new CultureInfo("en-US"));
+            GrammarBuilder grammarBuilder = new GrammarBuilder();
+            grammarBuilder.Culture = CultureInfo.CreateSpecificCulture("en-US");
+            Choices choices = new Choices();
+            choices.Add(new string[] {"all", "hi","Hello", "Everyone","Everybody","boy", "My","dream", "from", "China", "Moon", "is", "am", "are", "Chips", "of", "life", "meaning", "to", "come", "a", "the", "love", "sleep", "sleeping", "world"});
+            grammarBuilder.Append(choices);
+
+            var grammar = new Grammar(grammarBuilder);
+            recognizer.LoadGrammar(grammar);
+            recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
+            recognizer.SpeechRecognitionRejected += Recognizer_SpeechRecognitionRejected;
+
+            recognizer.SetInputToDefaultAudioDevice();
+            recognizer.RecognizeAsync(RecognizeMode.Multiple);
+            recognizer.MaxAlternates = 1;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButton1.Checked == true)
+            {
+                StartRecord();
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (progressBar1.Value < exers.Count)
+            {
+                label1.Text = "Задание " + (progressBar1.Value + 1).ToString();
+                label2.Text = "Переведите фразу " + "'" + exers[progressBar1.Value].ToString() + "'";
+                textBox1.Clear();
+                progressBar1.Value++;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form6 tyu = new Form6(typeee);
+            tyu.Show();
+        }
+    }
