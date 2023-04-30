@@ -1,0 +1,113 @@
+ public partial class Form2 : Form
+    {
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        public Image PictureBox1
+        {
+            get => pictureBox1.Image; 
+            set { pictureBox1.Image = value; }
+        }
+        public Image PictureBox2
+        {
+            get => pictureBox2.Image;
+            set { pictureBox2.Image = value; }
+        }
+        List<string> yougo = new List<string> { "Не сдавайся!", "У тебя все получится!", "Я в тебя верю!", "Ты все сможешь!", "Не вешай нос!", "Верь в себя!", "Иди за мечтой!" };
+        List<string> label = new List<string> {};
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Text != "" & textBox2.Text!= "")
+            {
+                string name = textBox1.Text;
+
+                string type = comboBox1.Text;
+                Image opchik = Image.FromFile("C:\\Users\\admin\\Desktop\\pi\\aa6e4f68839d052bd91ba5a2a33ad809.jpg");
+                Bitmap ooo0 = new Bitmap(opchik, new Size(355, 290));
+                Random lab = new Random();
+                if (type == "Преподаватель")
+                {
+                    this.Hide();
+                    Form3 lol = new Form3(type);
+                    lol.PictureBox1 = ooo0;
+                    lol.Show();
+                }
+                else
+                {
+                    this.Hide();
+                    Form4 lol = new Form4(type);
+                    lol.PictureBox1 = ooo0;
+                    lol.Show();
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Введите все значения!");
+            }
+            string emailtoo = textBox4.Text;
+            Send(email("ENGLISHOK!", "pup0000000chek@gmail.com", emailtoo, "ENGLISHOK!", "Поздравляем!\nРегистрация прошла успешно! Надеемся наше приложение сделает ваше обучение комфортным и продуктивным! Удачи! "),"smtp.gmail.com",587, "****", "pup0000000chek@gmail.com");
+            popup.Popup();
+        }
+        public static MailMessage email(string name, string emailFrom, string emailto, string subject, string body)
+        {
+            var from = new MailAddress(emailFrom, name);
+            var to = new MailAddress(emailto);
+            var mail = new MailMessage(from, to);
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            return mail;
+        }
+        public static void Send(MailMessage mail, string host, int smtpPort, string pass, string emailFrom)
+        {
+            SmtpClient smtp = new SmtpClient(host, smtpPort);
+            smtp.Credentials = new NetworkCredential(emailFrom, pass);
+            smtp.EnableSsl= true;
+
+            smtp.Send(mail);
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private PopupNotifier popup = null;
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            popup = new PopupNotifier();
+
+            popup.Image = Properties.Resources.pixil_frame_0;
+            popup.ImageSize = new Size(96, 96);
+            popup.TitleText = "Тук-тук!";
+            popup.ContentText = "Проверьте почту)";
+            popup.TitleColor = Color.Fuchsia;
+            popup.HeaderColor = Color.Aqua;
+            popup.BodyColor = Color.Bisque;
+            popup.ShowCloseButton = false;
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            monthCalendar1.Visible = true;
+            textBox3.Text = Convert.ToString(monthCalendar1.SelectionRange.Start.ToShortDateString());
+            
+        }
+        private void Form2_Enter(object sender, EventArgs e)
+        {
+            monthCalendar1.Hide();
+        }
