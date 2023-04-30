@@ -1,0 +1,40 @@
+
+        public Form5()
+        {
+            InitializeComponent();
+        }
+        string tpee = "";
+        public Form5(string type)
+        {
+            tpee = type;
+            InitializeComponent();
+        }
+        public List<string> cards = new List<string> { "Apple", "Table", "Hand", "Head", "Pen", "Run", "Frog" };
+        public List<string> ans = new List<string> { "Яблоко", "Стол", "Рука", "Голова", "Ручка", "Бежать", "Лягушка" };
+        int cnt = 0;
+        int rand = 0;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (cnt % 2 == 0)
+            {
+                Random yyy = new Random();
+                rand = yyy.Next(cards.Count);
+                label1.Text = cards[rand];
+                cnt++;
+            }
+            else
+            {
+                label1.Text = ans[rand];
+                cnt++;
+            }
+        }
+        public bool iii = true;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Image opchik = Image.FromFile("C:\\Users\\admin\\Desktop\\pi\\aa6e4f68839d052bd91ba5a2a33ad809.jpg");
+            Bitmap ooo0 = new Bitmap(opchik, new Size(355, 290));
+            this.Close();
+            Form6 y = new Form6(tpee);
+            y.Show();
+            this.Hide();
+        }
