@@ -1,0 +1,41 @@
+public Form3(string type)
+        {
+            typee = type;
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cmd eu = new cmd();
+            eu.ccmmdd(typee);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+        public Image PictureBox1
+        {
+            get => pictureBox1.Image;
+            set { pictureBox1.Image = value; }
+        }
