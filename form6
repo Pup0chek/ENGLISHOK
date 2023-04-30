@@ -1,0 +1,38 @@
+public partial class Form6 : Form
+    {
+        public string typpe = "";
+        public Form6(string typ)
+        {
+            InitializeComponent();
+            typpe = typ;
+        }
+        
+        private void Form6_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form5 ass = new Form5(typpe);
+            ass.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Image opchik = Image.FromFile("C:\\Users\\admin\\Desktop\\852309.png");
+            Bitmap ooo0 = new Bitmap(opchik, new Size(271, 271));
+            Form7 ass = new Form7(typpe);
+            ass.PictureBox1 = ooo0;
+            ass.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form4 qwerty = new Form4(typpe);
+            qwerty.Show();
+        }
+    }
