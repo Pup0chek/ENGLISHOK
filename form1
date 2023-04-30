@@ -1,0 +1,198 @@
+public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public class ooo {
+            public List<string> answery = new List<string> {"", "2","2", "3", "3", "1","1",  "2","2", "2", "2" };
+            public List<string> answery_get = new List<string> { "", "", "", "", "", "", "", "", "", "" };
+
+            public int cnt=0;
+            public string smth(int progress, List<string> aaa)
+            {
+                string label2 = aaa[progress];
+                return label2;
+            }
+            public bool cheek()
+            {
+                int cnt = 0;
+                for(int i =0; i < answery_get.Count; i++)
+                {
+                    if (answery_get[i] == answery[i])
+                    {
+                        cnt++;
+                    }
+                }
+                if(cnt >= 4)
+                {
+                    return true;
+                }
+                return false;
+            }
+            public void www(string qqq, int progres)
+            {
+                if (qqq == answery[progres])
+                {
+                    answery_get[progres] = qqq;
+                }
+            }
+            public void qqq(List<Label> aaa, string aaaa, int qq)
+            {
+                if(aaaa == answery[qq])
+                {
+                    aaa[Convert.ToInt32(aaaa) - 1].ForeColor = Color.Green;
+                    System.Media.SoundPlayer music = new System.Media.SoundPlayer();
+                    music.SoundLocation = "C:\\Users\\admin\\source\\repos\\WindowsFormsApp1\\WindowsFormsApp1\\Resources\\jg-032316-sfx-elearning-correct-answer-sound-1.wav";
+                    music.Play();
+                }
+                else 
+                {
+                    aaa[Convert.ToInt32(aaaa) - 1].ForeColor = Color.Red;
+                    System.Media.SoundPlayer music = new System.Media.SoundPlayer();
+                    music.SoundLocation = "C:\\Users\\admin\\source\\repos\\WindowsFormsApp1\\WindowsFormsApp1\\Resources\\6_sto-k-odnomu-ne-pra_ilnyy-ot_et.wav";
+                    music.Play();
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            i = 0;
+            timer1.Enabled = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            pictureBox1.Visible = true;
+            progressBar1.Visible = true;
+            List<string> tool = new List<string> {"", "Past Continues", "", "Грундий", "", "Прямая последовательность слов ", "",  "Герундий","", "Косвенная речь","" };
+            List<string> pictures = new List<string> { "", "C:\\Users\\admin\\Desktop\\pi\\_O2CVYbZbkA.jpg","", "C:\\Users\\admin\\Desktop\\pi\\9EM3sqmo00A.jpg","", "C:\\Users\\admin\\Desktop\\pi\\1661909184_1-papik-pro-p-smailiki-iz-duraka-png-1.jpg","", "C:\\Users\\admin\\Desktop\\pi\\channels4_profile.jpg","", "C:\\Users\\admin\\Desktop\\pi\\vCUHnt8Fsm8nw58EctjkWFmz0Ng7lDXWvETeTWh2xHeq7_Bc2nxoo6Z8PBWT4kdA38Uc6sXGF1DC-b7UL8Fd7VDC.jpg", "" };
+            List<string> qwerty = new List<string> {"1) I don’t speak English (...).", "1) I don’t speak English (...).", "2) By two o’clock in the morning the problem (...)", "2) By two o’clock in the morning the problem (...)", "3) I felt really sick when the plane was taking (...).", "3) I felt really sick when the plane was taking (...).", "4) They have (...) money but they’re still so mean.", "4) They have (...) money but they’re still so mean.", "5) Stop it, please! Your behaviour is really (...).", "5) Stop it, please! Your behaviour is really (...)." };
+            List<string> tyu1 = new List<string> { "1. well enough", "1. well enough", "1. had discussed", "1. had discussed", "1. out", "1. out", "1. so many", "1. so many", "1. annoyed", "1. annoyed" };
+            List<string> tyu2 = new List<string> { "2. good enough", "2. good enough", "2. was discussed", "2. was discussed", "2. of", "2. of", "2. so much", "2. so much", "2. annoying", "2. annoying" };
+            List<string> tyu3 = new List<string> { "3. enough well", "3. enough well", "3. had been discussed", "3. had been discussed", "3. off", "3. off", "3. much", "3. much", "3. annoyable", "3. annoyable" };
+            List<Label> cheeek = new List<Label> {label3, label4, label5 };
+            label1.Visible = false;
+            ooo sss = new ooo();
+            if (progressBar1.Value < 11)
+            {
+                if (textBox1.Text != "1" & textBox1.Text != "2" & textBox1.Text != "3")
+                {
+                    textBox1.Text = " ";
+                }
+                if (progressBar1.Value == 10)
+                {
+                    label2.Text = " ";
+                    label3.Text = " ";
+                    label5.Text = " ";
+
+                    if (sss.cheek())
+                    {
+                        label4.Text = "Тест пройден, поздравляю!";
+                        label4.TextAlign = ContentAlignment.MiddleCenter;
+                    }
+                    else
+                    {
+                        label4.Text = Convert.ToString("Ваш уровень владения языком сохранен!");
+                        label4.TextAlign = ContentAlignment.MiddleCenter;
+
+                    }
+                }
+                else
+                {
+                    label2.Text = sss.smth(progressBar1.Value, qwerty);
+                    label3.Text = sss.smth(progressBar1.Value, tyu1);
+                    label4.Text = sss.smth(progressBar1.Value, tyu2);
+                    label5.Text = sss.smth(progressBar1.Value, tyu3);
+                    if (progressBar1.Value != 0 & progressBar1.Value % 2 != 0)
+                    {
+                        
+                        if (textBox1.Text != " ")
+                        {
+                            sss.qqq(cheeek, textBox1.Text, progressBar1.Value);
+                            sss.www(textBox1.Text, progressBar1.Value);
+                        }
+                    }
+                    else
+                    {
+                        label3.ForeColor = Color.Black;
+                        label4.ForeColor = Color.Black;
+                        label5.ForeColor = Color.Black;
+                    }
+                }
+            }
+            if(progressBar1.Value == 11)
+            {
+                this.Hide();
+                Form2 ii = new Form2();
+                Image lol = Image.FromFile("C:\\Users\\admin\\Desktop\\pi\\7a74d8270687479b5a4be2ca376161d8.jpeg");
+                Bitmap ooo = new Bitmap(lol, new Size(80, 80));
+                ii.PictureBox1 = ooo;
+                Image loll = Image.FromFile("C:\\Users\\admin\\Desktop\\pi\\original-8078-1463414860-3.jpg");
+                Bitmap ooo0 = new Bitmap(loll, new Size(80, 80));
+                ii.PictureBox2 = ooo0;
+                ii.Show();
+
+            }
+            if (progressBar1.Value == 12)
+            {
+                this.Close();
+            }
+            else
+            {
+                progressBar1.Value++;
+                textBox1.Clear();
+                if (progressBar1.Value % 2 != 0 & progressBar1.Value != 11)
+                {
+                    textBox1.Visible = true;
+                    label7.Visible = true;
+                    label8.Visible = true;
+                    label6.Visible = true;
+                    Image lol = Image.FromFile(pictures[progressBar1.Value]);
+                    Bitmap ooo = new Bitmap(lol, new Size(268, 168));
+                    pictureBox1.Image = ooo;
+                    toolTip1.SetToolTip(pictureBox1, tool[progressBar1.Value]);
+                }
+                else
+                {
+                    label7.Visible = false;
+                    label8.Visible = false;
+                    label6.Visible = false;
+                }
+            }
+            
+
+        }
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Visible = false;
+            if (e.KeyCode == Keys.Enter) button1_Click(sender, e);
+            Visible = true;
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+        int i = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (progressBar1.Value <= 11)
+            {
+                i++;
+                label7.Text = (200 - i).ToString();
+                if (i == 200)
+                {
+                    label7.Text = "Time is over!";
+                    button1_Click(sender, e);
+                    i = 0;
+                }
+            }
+            
+        }
+    }
